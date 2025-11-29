@@ -18,6 +18,7 @@ public class ShopRepository {
     /**
      * Метод добавления товара в репозиторий с проверкой на дубликаты
      */
+    //для задания 2
     public void add(Product product) {
         // Проверяем, нет ли уже товара с таким ID
         Product existingProduct = findById(product.getId());

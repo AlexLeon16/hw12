@@ -45,6 +45,7 @@ public class ShopRepositoryTest {
         Assertions.assertEquals("Element with id: 999 not found", exception.getMessage());
     }
 
+
     @Test
     public void testAddNewProduct() {
         // Arrange
@@ -60,25 +61,23 @@ public class ShopRepositoryTest {
         Assertions.assertEquals(product, result[0]);
         Assertions.assertEquals(product, repository.findById(1));
     }
-
     @Test
-    public void testAddExistingProduct() {
-        // Arrange
+        public void testAddExistingProduct() {
+            // Arrange
         ShopRepository repository = new ShopRepository();
         Product product1 = new Product(1, "Product 1", 100);
         Product product2 = new Product(1, "Product 2", 200); // Тот же ID
 
         repository.add(product1);
 
-        // Act & Assert
+            // Act & Assert
         AlreadyExistsException exception = Assertions.assertThrows(
-                AlreadyExistsException.class,
-                () -> repository.add(product2)
-        );
+                AlreadyExistsException.class, () -> repository.add(product2)
+            );
 
         Assertions.assertEquals("Element with id: 1 already exists", exception.getMessage());
 
-        // Проверяем, что оригинальный продукт не изменился
+            // Проверяем, что оригинальный продукт не изменился
         Product[] result = repository.findAll();
         Assertions.assertEquals(1, result.length);
         Assertions.assertEquals(product1, result[0]);
